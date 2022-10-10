@@ -1,5 +1,5 @@
-const URL = 'https://pristine-chatty.herokuapp.com/messages'
-var socket = io();
+const URL = 'https://pristine-chatty.herokuapp.com/messages/'
+var socket = io('https://pristine-chatty.herokuapp.com');
 
 const store = Vuex.createStore({
   state () {
@@ -61,11 +61,12 @@ const store = Vuex.createStore({
     socket.on('message', function(json){
       store.commit('updateThread',JSON.parse(json))
     })
-    const res = await axios.post(URL, json, {
+    console.log(json)
+    /*const res = await axios.post(URL, json, {
   	headers: {
   	'Content-Type': 'application/json'
   	}
-  	});
+  	});*/
     store.commit('clearForm')
     alert('sent')
   }
